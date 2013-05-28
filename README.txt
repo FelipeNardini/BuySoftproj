@@ -1,1 +1,0 @@
-BuySoft é um sistema de compras online.

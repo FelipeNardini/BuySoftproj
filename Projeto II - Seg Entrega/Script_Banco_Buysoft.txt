@@ -1,0 +1,67 @@
+Create table Cliente(
+Cod_Cli integer,
+Nome_Cli varchar(30),
+Endereco varchar(60),
+Cidade varchar(30),
+Bairro varchar(30),
+UF char(2),
+Primary key(Cod_cli));
+
+Create table Acompanhamento_Pedido (
+Cod_Ped integer,
+Cod_Cli integer,
+Data_Pag date;
+Data_Ent date;
+Primary key(Cod_Ped),
+Foreign key (Cod_Cli) References Cliente (Cod_Cli));
+
+Create table Produto(
+Cod_Prod integer,
+Quantidade varchar(10),
+Descricao varchar(30)
+Valor_Unit double,
+Primary key(Cod_Prod));
+
+Create table Endereco_Alter(
+Cod_Ender integer;
+Cod_Cli integer,
+Nome varchar(30),
+Endereco varchar(60),
+Cidade varchar(30),
+Bairro varchar(30),
+UF char(2),
+Primary key(Cod_Ender),
+Foreign key (Cod_Cli) References Cliente (Cod_Cli));
+
+Create table Desejo(
+Cod_Desejo integer,
+Cod_Cli integer,
+Cod_Prod integer,
+Primary key(Cod_Desejo),
+Foreign key (Cod_Cli) References Cliente (Cod_Cli),
+Foreign key (Cod_Prod) References Produto (Cod_Prod));
+
+Create table Compra(
+Cod_Compra integer,
+Cod_Cli integer,
+Cod_Prod integer,
+Quantidade,
+Valor double,
+Primary key(Cod_Compra)
+Foreign key (Cod_Cli) References Cliente (Cod_Cli),
+Foreign key (Cod_Prod) References Produto (Cod_Prod));
+
+Create table Filial(
+Cod_Filial integer,
+Cidade varchar(30),
+UF char(2),
+Primary key(Cod_Filial));
+
+Create table Estoque(
+Cod_Estoq integer,
+Cod_Filial integer,
+Cod_Prod integer,
+Quantidade integer,
+Primary key(Cod_Estoq),
+Foreign key (Cod_Filial) References Filial (Cod_Filial),
+Foreign key (Cod_Prod) References Produto (Cod_Prod));
